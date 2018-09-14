@@ -42,12 +42,20 @@ public class Juego extends javax.swing.JFrame {
     private void initComponents() {
 
         miEtiqueta = new javax.swing.JLabel();
+        Etiqueta2 = new javax.swing.JLabel();
+        Etiqueta1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Etiqueta2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Etiqueta2MouseClicked(evt);
+            }
+        });
 
         jMenu1.setText("Iniciar");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,16 +88,18 @@ public class Juego extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(miEtiqueta)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addComponent(miEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Etiqueta1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Etiqueta2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(miEtiqueta)
-                .addContainerGap(228, Short.MAX_VALUE))
+            .addComponent(Etiqueta1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addComponent(Etiqueta2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(miEtiqueta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -112,13 +122,28 @@ public class Juego extends javax.swing.JFrame {
 
                 int cartica = miBaraja.misCartas[0].posición;
                 System.out.println(cartica);
+                
+                int cartica1 = miBaraja.misCartas[1].posición;
+                System.out.println(cartica1);
+                
+                int cartica2 = miBaraja.misCartas[2].posición;
+                System.out.println(cartica2);
 
                 BufferedImage miniImagen = miImagen.getSubimage(225 * (cartica % 13), 315 * (cartica / 13), 225, 315);
-
+                BufferedImage minImagen = miImagen.getSubimage(225 * (cartica1 % 13), 315 * (cartica1 / 13), 225, 315);
+                BufferedImage minnImagen = miImagen.getSubimage(225 * (cartica2 % 13), 315 * (cartica2 / 13), 225, 315);
+           
+                
                 //3. Asignar la image a la etiqueta
                 ImageIcon miIcono = new ImageIcon(miniImagen);
+                ImageIcon miIcono1 = new ImageIcon(minImagen);
+                ImageIcon miIcono2 = new ImageIcon(minnImagen);
 
                 miEtiqueta.setIcon(miIcono);
+                Etiqueta1.setIcon(miIcono1);
+                Etiqueta2.setIcon(miIcono2);
+               
+                
              //   miEtiqueta.repaint();
              
             } catch (IOException ex) {
@@ -127,8 +152,9 @@ public class Juego extends javax.swing.JFrame {
 
         } else {
             JOptionPane.showMessageDialog(this, "No existe un mazo para repartir!!!");
-        }
-
+        } 
+        
+        
 
     }//GEN-LAST:event_jMenu3MouseClicked
 
@@ -140,9 +166,14 @@ public class Juego extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Para barajar debe existir un mazo!!!");
         }
+       
 
 
     }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void Etiqueta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Etiqueta2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Etiqueta2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -178,9 +209,12 @@ public class Juego extends javax.swing.JFrame {
                 new Juego().setVisible(true);
             }
         });
+            
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Etiqueta1;
+    private javax.swing.JLabel Etiqueta2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
